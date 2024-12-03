@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: jdbc_demo_db
+    environment:
+      POSTGRES_USER: jdbc_user
+      POSTGRES_PASSWORD: jdbc_password
+      POSTGRES_DB: jdbc_demo
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/main/resources:/docker-entrypoint-initdb.d
+
+volumes:
+  postgres_data:
